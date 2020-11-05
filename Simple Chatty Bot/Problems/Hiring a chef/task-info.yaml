@@ -12,5 +12,9 @@ files:
     }
   learner_created: false
 feedback_link: https://hyperskill.org/learn/step/9057#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: <html>Correct solution<br/><br/>Continue on <a href="https://hyperskill.org/learn/step/9057#comment">JetBrains
+    Academy</a></html>
+  time: Thu, 05 Nov 2020 02:11:40 UTC
 record: -1
