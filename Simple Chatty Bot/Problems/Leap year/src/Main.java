@@ -5,8 +5,8 @@ class Main {
         Scanner scanner = new Scanner(System.in);
         int year = scanner.nextInt();
 
-        if ( 1900 <= year && year <= 3000 ) {
-            if ( year % 4 == 0 && year % 100 != 0 ) {
+        if (1900 <= year && year <= 3000) {
+            if (year % 4 == 0 && year % 100 != 0) {
                 System.out.println("Leap");
             } else if (year % 400 == 0) {
                 System.out.println("Leap");

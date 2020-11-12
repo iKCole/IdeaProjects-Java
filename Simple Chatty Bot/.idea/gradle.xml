@@ -11,11 +11,13 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Problems/Check burgs" />
             <option value="$PROJECT_DIR$/Problems/Check the value" />
             <option value="$PROJECT_DIR$/Problems/Guest list of a hotel" />
             <option value="$PROJECT_DIR$/Problems/Hiring a chef" />
             <option value="$PROJECT_DIR$/Problems/Leap year" />
             <option value="$PROJECT_DIR$/Problems/Printing strings in the same order" />
+            <option value="$PROJECT_DIR$/Problems/Replacing 'a' with 'b'" />
             <option value="$PROJECT_DIR$/Problems/The army of units" />
             <option value="$PROJECT_DIR$/Simple Chatty Bot/task" />
             <option value="$PROJECT_DIR$/util" />
