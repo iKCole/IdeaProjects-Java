@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/371177/additional_files.json
   is_template_based: true
   use_ide: true
-update_date: Wed, 11 Nov 2020 23:56:33 UTC
+update_date: Tue, 17 Nov 2020 17:04:17 UTC
 stages:
 - id: 614
   step: 9925
@@ -42,6 +42,10 @@ topics:
   2:
   - title: Units of information
     theory_id: 6865
+  - title: Sizes and ranges
+    theory_id: 3532
+  - title: Type casting
+    theory_id: 3510
   - title: Arithmetic operations
     theory_id: 3519
   - title: Integer types and operations
@@ -54,10 +58,6 @@ topics:
     theory_id: 5008
   - title: Characters
     theory_id: 3514
-  - title: Sizes and ranges
-    theory_id: 3532
-  - title: Type casting
-    theory_id: 3510
   - title: Conditional statement
     theory_id: 3503
   - title: Ternary operator
