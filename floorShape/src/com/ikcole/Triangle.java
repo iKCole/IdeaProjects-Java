@@ -14,15 +14,15 @@ public class Triangle extends Shape {
     }
 
     @Override
-    double calculateArea() {
+    public double calculateArea() {
         double s = (a + b + c) / 2;
         return Math.sqrt(s * (s - a) * (s - b) * (s - c));
     }
 
     static class TriangleStdin extends ShapeInput<Triangle> {
         @Override
-        Triangle StdinShape(Scanner scanner) {
-            return null;
+        Triangle StdinShape(Scanner input) {
+            return new Triangle(input.nextDouble(), input.nextDouble(), input.nextDouble());
         }
     }
 }

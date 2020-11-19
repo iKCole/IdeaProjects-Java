@@ -1,4 +1,5 @@
 package com.ikcole;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 class Shape {
@@ -8,5 +9,10 @@ class Shape {
 
     double calculateArea() {
         return 0;
+    }
+
+    public static String doubleFormat(double value) {
+        DecimalFormat df = new DecimalFormat("0.00");
+        return df.format(value);
     }
 }
