@@ -1,5 +1,6 @@
 package com.ikcole;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Rectangle extends Shape {
@@ -17,9 +18,17 @@ public class Rectangle extends Shape {
     }
 
     static class RectangleStdin extends ShapeInput<Rectangle> {
+        double[] scan = new double[2];
+        int i = 0;
+
         @Override
         Rectangle StdinShape(Scanner scanner) {
-            return new Rectangle(scanner.nextDouble(), scanner.nextDouble());
+            for (String display : Arrays.asList("Height: ", "Width: ")) {
+                System.out.print(display);
+                scan[i] = scanner.nextDouble();
+                i = i + 1;
+            }
+            return new Rectangle(scan[0],scan[1]);
         }
     }
 }
