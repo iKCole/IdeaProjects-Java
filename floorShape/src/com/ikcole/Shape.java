@@ -11,8 +11,8 @@ class Shape {
         return 0;
     }
 
-    public static String doubleFormat(double value) {
-        DecimalFormat df = new DecimalFormat("0.00");
-        return df.format(value);
+
+    public static String displayInString(double d) {
+        return String.valueOf(d);
     }
 }
