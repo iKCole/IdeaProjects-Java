@@ -1,5 +1,6 @@
 package com.ikcole;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Triangle extends Shape {
@@ -20,9 +21,17 @@ public class Triangle extends Shape {
     }
 
     static class TriangleStdin extends ShapeInput<Triangle> {
+        double[] read = new double[3];
+        int i = 0;
+
         @Override
         Triangle StdinShape(Scanner input) {
-            return new Triangle(input.nextDouble(), input.nextDouble(), input.nextDouble());
+            for (String display : Arrays.asList("Side A: ", "Side B: ", "Side C: ")) {
+                System.out.print(display);
+                read[i] = input.nextDouble();
+                i += 1;
+            }
+            return new Triangle(read[0], read[1], read[2]);
         }
     }
 }
