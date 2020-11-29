@@ -9,6 +9,9 @@ public class Enrollment {
     private int studentID;
     private Grade grade;
 
+    private Course course;
+    private Student student;
+
     public int getEnrollmentID() {
         return enrollmentID;
     }
@@ -40,6 +43,23 @@ public class Enrollment {
     public void setGrade(Grade grade) {
         this.grade = grade;
     }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
 
 
 }
