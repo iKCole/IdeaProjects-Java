@@ -50,4 +50,5 @@ public class Student extends Enrollment {
     public void setEnrollments(List<Enrollment> enrollments) {
         this.enrollments = enrollments;
     }
+
 }
