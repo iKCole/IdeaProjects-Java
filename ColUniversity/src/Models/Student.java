@@ -1,5 +1,7 @@
 package Models;
 
+import javax.print.attribute.standard.DateTimeAtProcessing;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -7,7 +9,7 @@ public class Student extends Enrollment {
     private int ID;
     private String lastName;
     private String firstMidName;
-    private Date enrollmentDate;
+    private LocalDate enrollmentDate;
 
     private List<Enrollment> enrollments;
 
@@ -35,11 +37,11 @@ public class Student extends Enrollment {
         this.firstMidName = firstMidName;
     }
 
-    public Date getEnrollmentDate() {
+    public LocalDate getEnrollmentDate() {
         return enrollmentDate;
     }
 
-    public void setEnrollmentDate(Date enrollmentDate) {
+    public void setEnrollmentDate(LocalDate enrollmentDate) {
         this.enrollmentDate = enrollmentDate;
     }
 
@@ -50,5 +52,16 @@ public class Student extends Enrollment {
     public void setEnrollments(List<Enrollment> enrollments) {
         this.enrollments = enrollments;
     }
+
+    public Student(String firstMidName, String lastName) {
+        this.firstMidName = firstMidName;
+        this.lastName = lastName;
+        this.enrollmentDate = LocalDate.now();
+    }
+
+    public void displayInfo() {
+        System.out.println(firstMidName + " " + lastName + "......." + enrollmentDate);
+    }
+
 
 }

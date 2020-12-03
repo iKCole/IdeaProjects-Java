@@ -1,5 +1,8 @@
 package com.ikcole;
 
+import Models.Student;
+import Utilies.Create;
+
 import java.util.Scanner;
 
 public class Main {
@@ -39,6 +42,8 @@ public class Main {
         switch (select) {
             case 1:
                 studentContext();
+                Student newStudent = new Student(read.next(), read.next());
+                newStudent.displayInfo();
                 break;
             case 2:
                 courseContext();
