@@ -19,7 +19,9 @@ public class Main {
 
     public static String displayHeader() {
         System.out.println("-------- Welcome to Col University ----------");
-        System.out.println("1. Students\t2. Courses\t3. Instructors\t4. Departments");
+        for (var displayList: menuMainOptions) {
+            System.out.printf("%d. %s%n", displayList.number, displayList.menuLabel);
+        }
         return READ.next();
     }
     private static List<MenuOption> menuMainOptions = List.of(
@@ -27,6 +29,12 @@ public class Main {
             new MenuOption(2, "Manage Courses"),
             new MenuOption(3, "Manage Instructors"),
             new MenuOption(4, "Manage Department"),
+            new MenuOption(9, "Exit program")
+    );
+
+    private static List<MenuOption> manageStudent = List.of(
+            new MenuOption(1, "Add"),
+            new MenuOption(2, "View"),
             new MenuOption(9, "Exit program")
     );
 
