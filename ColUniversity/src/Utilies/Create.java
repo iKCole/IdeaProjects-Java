@@ -1,7 +1,13 @@
 package Utilies;
 
-import java.util.Scanner;
+import Models.Student;
+
+import java.util.LinkedList;
 
 public interface Create {
-    Scanner create = new Scanner(System.in);
+    private LinkedList<Student> add() {
+        return null;
+    }
+
+    public void viewList();
 }

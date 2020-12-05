@@ -1,9 +1,10 @@
 package Models;
 
-import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
+import Utilies.Create;
 
-public class Student extends Enrollment {
+public class Student {
     private final int ID;
     private String lastName;
     private String firstMidName;
@@ -11,7 +12,7 @@ public class Student extends Enrollment {
     private final int student_id;
     private boolean pending;
 
-   // private List<Enrollment> enrollments;
+    // private List<Enrollment> enrollments;
 
     public int getID() {
         return ID;
@@ -48,8 +49,5 @@ public class Student extends Enrollment {
         this.student_id = student_id;
         this.pending = pending;
     }
-
-
-
 
 }
