@@ -11,19 +11,21 @@ import java.util.*;
 public class Main {
 
     private static final Scanner READ = new Scanner(System.in);
-    static String[] saveData = {};
+    static String[] saveData = new String[5];
+    static StudentDirectory students = new StudentDirectory();
 
     public static void main(String[] args) {
-        selectMenu(readSelectMenu(displayHeader()));
+        displayHeader();
+        selectMenu(READ.nextInt());
 
     }
 
-    public static String displayHeader() {
+    public static void displayHeader() {
         System.out.println("-------- Welcome to Col University ----------");
         for (var displayList: menuMainOptions) {
             System.out.printf("%d. %s%n", displayList.number, displayList.menuLabel);
+            System.out.println("Enter a menu option: ");
         }
-        return READ.next();
     }
     private static List<MenuOption> menuMainOptions = List.of(
             new MenuOption(1, "Manage Students"),
@@ -39,15 +41,13 @@ public class Main {
             new MenuOption(9, "Exit program")
     );
 
-    static List<String> formLabels = new ArrayList<>(
-            Arrays.asList(
-                    "UID: ",
-                    "First Name: ",
-                    "Last Name: ",
-                    "Email: ",
-                    "Password: "
-            )
-    );
+    static String[] formLabels = {
+            "UID: ",
+            "First Name: ",
+            "Last Name: ",
+            "Email: ",
+            "Password: "
+    };
 
 //    public static boolean isNumeric(String read) {
 //        try {
@@ -71,7 +71,8 @@ public class Main {
         switch (select) {
             case 1:
                 studentContext();
-
+                add();
+                view();
                 break;
             case 2:
                 courseContext();
@@ -92,18 +93,24 @@ public class Main {
              ) {
             System.out.printf("%d. %s%n", viewOption.number, viewOption.menuLabel);
         }
-        try {
-            if(READ.nextInt() == 1) {
-                StudentDirectory students = new StudentDirectory();
-                for (int i = 0; i < formLabels.size() - 4; i++) {
-                    saveData[i] = formInput(formLabels.get(i));
-                    continue;
-                }
-                Student student = new Student(Integer.valueOf(saveData[0]), saveData[1], saveData[2],
-                        Collections.singletonList(new Account(saveData[3], saveData[4])));
-            }
-        } catch (Exception e) {
-                e.printStackTrace();
+    }
+
+    public static void add() {
+        int i = 0;
+        while (i < 5) {
+            System.out.print(formLabels[i]);
+            saveData[i] = READ.next();
+            i++;
+        }
+        Student student = new Student(Integer.parseInt(saveData[0]), saveData[1], saveData[2],
+                Collections.singletonList(new Account(saveData[3], saveData[4])));
+        students.addStudent(student);
+    }
+
+    public static void view(){
+        for (Student view: students.viewStudents()
+             ) {
+            System.out.println(view.getStudent_id());
         }
     }
 
@@ -119,9 +126,5 @@ public class Main {
         System.out.println("1. List\t2. Create\t3. Update\t4. Delete\t0. Back to Menu");
     }
 
-    public static String formInput(String input) {
-        System.out.println(input);
-        return READ.nextLine();
-    }
 
 }
