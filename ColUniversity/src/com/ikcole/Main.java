@@ -1,20 +1,21 @@
 package com.ikcole;
 
+import Manipulation.StudentDirectory;
+import Models.Account;
 import Models.Student;
 import Utilies.Create;
 import Utilies.MenuOption;
 
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
     private static final Scanner READ = new Scanner(System.in);
+    static String[] saveData = {};
 
     public static void main(String[] args) {
-	// write your code here
-        int selected = readSelectMenu(displayHeader());
-        selectMenu(selected);
+        selectMenu(readSelectMenu(displayHeader()));
+
     }
 
     public static String displayHeader() {
@@ -36,6 +37,16 @@ public class Main {
             new MenuOption(1, "Add"),
             new MenuOption(2, "View"),
             new MenuOption(9, "Exit program")
+    );
+
+    static List<String> formLabels = new ArrayList<>(
+            Arrays.asList(
+                    "UID: ",
+                    "First Name: ",
+                    "Last Name: ",
+                    "Email: ",
+                    "Password: "
+            )
     );
 
 //    public static boolean isNumeric(String read) {
@@ -60,6 +71,7 @@ public class Main {
         switch (select) {
             case 1:
                 studentContext();
+
                 break;
             case 2:
                 courseContext();
@@ -76,7 +88,23 @@ public class Main {
     }
 
     public static void studentContext() {
-        System.out.println("1. List\t2. Create\t3. Update\t4. Delete\t0. Back to Menu");
+        for (var viewOption: manageStudent
+             ) {
+            System.out.printf("%d. %s%n", viewOption.number, viewOption.menuLabel);
+        }
+        try {
+            if(READ.nextInt() == 1) {
+                StudentDirectory students = new StudentDirectory();
+                for (int i = 0; i < formLabels.size() - 4; i++) {
+                    saveData[i] = formInput(formLabels.get(i));
+                    continue;
+                }
+                Student student = new Student(Integer.valueOf(saveData[0]), saveData[1], saveData[2],
+                        Collections.singletonList(new Account(saveData[3], saveData[4])));
+            }
+        } catch (Exception e) {
+                e.printStackTrace();
+        }
     }
 
     public static void courseContext() {
@@ -90,4 +118,10 @@ public class Main {
     public static void deptContext() {
         System.out.println("1. List\t2. Create\t3. Update\t4. Delete\t0. Back to Menu");
     }
+
+    public static String formInput(String input) {
+        System.out.println(input);
+        return READ.nextLine();
+    }
+
 }

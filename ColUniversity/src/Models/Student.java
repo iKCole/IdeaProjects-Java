@@ -5,18 +5,16 @@ import java.util.List;
 import Utilies.Create;
 
 public class Student {
-    private final int ID;
+//    private final int ID;
     private String lastName;
     private String firstMidName;
     private List<Account> studentAccount;
     private final int student_id;
     private boolean pending;
 
-    // private List<Enrollment> enrollments;
-
-    public int getID() {
-        return ID;
-    }
+//    public int getID() {
+//        return ID;
+//    }
 
     public String getLastName() {
         return lastName;
@@ -40,14 +38,11 @@ public class Student {
 
     public boolean isPending() { return pending; }
 
-    public Student(int id, String firstMidName, String lastName, List<Account> studentAccount, int student_id,
-                   boolean pending) {
-        this.ID = id;
+    public Student(int student_id, String firstMidName, String lastName, List<Account> studentAccount) {
+        this.student_id = student_id;
         this.firstMidName = firstMidName;
         this.lastName = lastName;
         this.studentAccount = studentAccount;
-        this.student_id = student_id;
-        this.pending = pending;
     }
 
 }

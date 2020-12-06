@@ -3,11 +3,10 @@ package Utilies;
 import Models.Student;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public interface Create {
-    private LinkedList<Student> add() {
-        return null;
-    }
+    public List<Object> add(Object obj);
 
     public void viewList();
 }
