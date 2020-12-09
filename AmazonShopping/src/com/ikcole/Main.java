@@ -3,6 +3,8 @@ package com.ikcole;
 import Models.Product;
 import Models.Products;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +18,26 @@ public class Main {
     static List<Product> productList = new ArrayList<>();
 
     public static void main(String[] args) {
-        addProductStore();
-        viewProductDetails();
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(new File("~/Users/isaaccoleman/IdeaProjects/AmazonShopping/out/production" +
+                    "/AmazonShopping/com/ikcole/file.csv"));
+            scanner.useDelimiter(",");
+            while(scanner.hasNext()) {
+                System.out.print(scanner.next() +" ");
+            }
+        } catch (FileNotFoundException fe) {
+            fe.printStackTrace();
+        }
+        finally {
+            scanner.close();
+        }
 
+    }
+
+    private int scanUserInput() throws NumberFormatException {
+        Scanner input = new Scanner(System.in);
+        return Integer.parseInt(input.nextLine());
     }
 
     public static void addProductStore() {
