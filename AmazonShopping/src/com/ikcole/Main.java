@@ -1,10 +1,9 @@
 package com.ikcole;
 
+import Models.Cart;
 import Models.Product;
 import Models.Products;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,28 +15,70 @@ public class Main {
     static Product product = new Product();
     static Products productStore = new Products();
     static List<Product> productList = new ArrayList<>();
+    static Cart cart = new Cart();
+    static int choice = 0;
 
     public static void main(String[] args) {
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(new File("~/Users/isaaccoleman/IdeaProjects/AmazonShopping/out/production" +
-                    "/AmazonShopping/com/ikcole/file.csv"));
-            scanner.useDelimiter(",");
-            while(scanner.hasNext()) {
-                System.out.print(scanner.next() +" ");
-            }
-        } catch (FileNotFoundException fe) {
-            fe.printStackTrace();
-        }
-        finally {
-            scanner.close();
-        }
-
+        mainMenu();
     }
 
-    private int scanUserInput() throws NumberFormatException {
+    private static int scanUserInput() throws NumberFormatException {
         Scanner input = new Scanner(System.in);
-        return Integer.parseInt(input.nextLine());
+        choice = Integer.parseInt(input.nextLine());
+        return choice;
+    }
+
+    public static void startConsole() {
+        System.out.println("1. Display Products\n2. Display Cart\n3. Exit");
+    }
+
+    public static void mainMenu() {
+        do {
+            startConsole();
+            scanUserInput();
+
+            switch (choice) {
+                case 1:
+                    printStoreProducts();
+                    productOptions();
+                    scanUserInput();
+                    editOptions();
+                    break;
+                case 2:
+                    printCart();
+                    break;
+                case 3:
+                    System.exit(3);
+                    break;
+                default:
+                    break;
+            }
+        } while (choice != 0);
+    }
+
+    public static void productOptions() {
+        System.out.println("1. Add \n2. Remove \n3. Exit");
+    }
+
+    private static  void editOptions() {
+        switch (choice) {
+            case 1:
+                addProductStore();
+                viewProductDetails();
+                break;
+            case 2:
+                removeProductFromCart();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private static void printStoreProducts() {
+        List<Product> products = new Products().getProducts();
+        for(Product p: products) {
+            System.out.println(p.getProductID() + "... " + p.getProductName() + " " + p.getProductPrice() + " " + p.getProductStock());
+        }
     }
 
     public static void addProductStore() {
@@ -61,5 +102,19 @@ public class Main {
             System.out.println("==| " + list.getProductID() + "\t" + list.getProductName() + "\t" + list.getProductPrice() +
                     "\t" + list.getProductStock());
         }
+    }
+
+    public static void addProductToCart() {
+        int productID = scanUserInput();
+        cart.addToCartByProductID(productID);
+    }
+
+    public static  void removeProductFromCart() {
+        int productID = scanUserInput();
+        cart.removeProduct(productID);
+    }
+
+    public static void printCart() {
+        cart.printCartProduct();
     }
 }
