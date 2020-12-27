@@ -1,21 +1,33 @@
 package Models;
 
+import java.text.DecimalFormat;
+import java.util.Random;
+
 public class Products {
-    private static String productName;
-    private static String productDescription;
-    private static Enum<Category> productCategory;
-    private static int productQuantity;
-    private static int reOrderPoint = 0;
+    private int productId;
+    private String productName;
+    private String productDescription;
+    private Enum<Category> productCategory;
+    private int productQuantity;
+    private double productPrice;
+    public double amount;
 
     public Products() {
 
     }
 
-    public Products(String pName, String pDescription, Enum<Category> pCategory, int pQuantity) {
+    public Products(String pName, String pDescription, Enum<Category> pCategory, int pQuantity, double pPrice) {
+        Random random = new Random();
+        productId = random.nextInt(133);
         productName = pName;
         productDescription = pDescription;
         productCategory = pCategory;
         productQuantity = pQuantity;
+        productPrice = pPrice;
+    }
+
+    public int getProductId() {
+        return productId;
     }
 
     public String getProductName() {
@@ -32,13 +44,6 @@ public class Products {
         productDescription = pDescription;
     }
 
-    public  int getReOrderPoint() {
-        return reOrderPoint;
-    }
-     public void setReOrderPoint(int quantitySold) {
-        reOrderPoint -= quantitySold;
-     }
-
      public int getProductQuantity() {
         return productQuantity;
      }
@@ -46,10 +51,20 @@ public class Products {
         return productQuantity = Math.max(quantity, 0);
      }
 
+     public double getProductPrice() {
+        return productPrice;
+     }
+
+     public double setProductPrice(double pPrice) {
+        return productPrice = Math.max(pPrice, 0.00);
+     }
+
+
     @Override
     public String toString() {
-        return String.format("%-15s %15s %d %n", this.getProductName(), this.getProductDescription(),
-                this.getProductQuantity());
+        DecimalFormat df = new DecimalFormat("#.##");
+        return "%d %-15s\t%-20s\t%5d\t%5s\t\t%-10s".formatted(this.productId, this.productName, this.productDescription,
+                this.productQuantity, this.productPrice, df.format(this.productPrice * this.productQuantity));
     }
 }
 
