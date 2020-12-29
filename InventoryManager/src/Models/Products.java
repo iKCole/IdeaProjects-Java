@@ -16,9 +16,8 @@ public class Products {
 
     }
 
-    public Products(String pName, String pDescription, Enum<Category> pCategory, int pQuantity, double pPrice) {
-        Random random = new Random();
-        productId = random.nextInt(133);
+    public Products(Integer pId, String pName, String pDescription, Enum<Category> pCategory, int pQuantity, double pPrice) {
+        productId = pId;
         productName = pName;
         productDescription = pDescription;
         productCategory = pCategory;
@@ -29,6 +28,7 @@ public class Products {
     public int getProductId() {
         return productId;
     }
+    public void setProductId(Integer pId) { productId = pId; }
 
     public String getProductName() {
         return productName;
@@ -43,6 +43,9 @@ public class Products {
     public void setProductDescription(String pDescription) {
         productDescription = pDescription;
     }
+
+    public Enum<Category> getCategory() { return productCategory; }
+    public void setProductCategory(Enum<Category> pCategory) { productCategory = pCategory; }
 
      public int getProductQuantity() {
         return productQuantity;
