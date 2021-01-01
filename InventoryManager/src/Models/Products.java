@@ -1,7 +1,7 @@
 package Models;
 
-import java.text.DecimalFormat;
-import java.util.Random;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class Products {
     private int productId;
@@ -51,7 +51,10 @@ public class Products {
         return productQuantity;
      }
      public int setProductQuantity(int quantity) {
-        return productQuantity = Math.max(quantity, 0);
+        if(quantity < 0) {
+            System.out.println("Invalid entry for the quantity");
+        }
+        return this.productQuantity = Math.max(quantity, 0);
      }
 
      public double getProductPrice() {
@@ -59,15 +62,19 @@ public class Products {
      }
 
      public double setProductPrice(double pPrice) {
+        if(pPrice <= 0) {
+            System.out.println("ERROR: Invalid entry for Price");
+        }
         return productPrice = Math.max(pPrice, 0.00);
      }
 
 
     @Override
     public String toString() {
-        DecimalFormat df = new DecimalFormat("#.##");
+        NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
         return "%d %-15s\t%-20s\t%5d\t%5s\t\t%-10s".formatted(this.productId, this.productName, this.productDescription,
-                this.productQuantity, this.productPrice, df.format(this.productPrice * this.productQuantity));
+                this.productQuantity, nf.format(this.productPrice),
+                nf.format(this.productPrice * this.productQuantity));
     }
 }
 
