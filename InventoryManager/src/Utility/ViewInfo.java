@@ -3,6 +3,7 @@ package Utility;
 import Models.Orders;
 import Models.Products;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ViewInfo {
@@ -12,10 +13,14 @@ public class ViewInfo {
     private final static int productReOrder = 0;
 
     // View report
-    private static List<Products> viewReport;
+    private static final List<Products> viewProducts = new ArrayList<>();
     private static List<Orders> viewOrders;
 
-    public ViewInfo() {}
+    public ViewInfo() {
 
+    }
 
+    public List<Products> viewAllProducts() {
+        return viewProducts;
+    }
 }

@@ -1,6 +1,10 @@
 package Models;
 
+import Utility.ViewInfo;
+
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class Products {
@@ -76,5 +80,7 @@ public class Products {
                 this.productQuantity, nf.format(this.productPrice),
                 nf.format(this.productPrice * this.productQuantity));
     }
+
+
 }
 

@@ -2,6 +2,7 @@ package com.ikcole;
 
 import Models.Category;
 import Models.Products;
+import Utility.addProducts;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,11 +18,11 @@ public class Main {
     * */
     static Scanner userReadKey = new Scanner(System.in);
     static Products product = new Products();
+    static addProducts saveProductDetails = new addProducts();
 
     public static void main(String[] args) {
 	// write your code here
         try {
-            optionSelect(mainMenu());
             addProducts();
         } catch (IOException e) {
             e.printStackTrace();
@@ -34,19 +35,6 @@ public class Main {
         return userReadKey.nextInt();
     }
 
-    public static int optionSelect(int numKey) {
-
-        switch (numKey) {
-            case 1, 2 -> System.out.print("1. Add \n2. View\n3. Delete \n0. Back\nSelect using a numeric key: ");
-            case 3 -> System.out.print("1. View\n0. Back\nSelect using a numeric key: ");
-            default -> {
-                System.out.println("ERROR: Invalid entry. Back to the menu...");
-                mainMenu();
-            }
-        }
-        return userReadKey.nextInt();
-    }
-
     public static String readTexts() throws IOException {
         BufferedReader readInput = new BufferedReader( new InputStreamReader(System.in));
         return readInput.readLine();
@@ -54,23 +42,24 @@ public class Main {
 
     public static void addProducts() throws IOException {
         Random randomID = new Random();
-        System.out.print("\n______ Add New Product ______\n>| Name: ");
+        System.out.println("----- ADD NEW PRODUCT ------");
+        System.out.print(">| Name: ");
         product.setProductName(userReadKey.nextLine());
         System.out.print(">| Brief Description (Max 50): ");
         product.setProductDescription(readTexts());
         System.out.print(">| ID (Only numeric): ");
         int number = userReadKey.nextInt();
         product.setProductId((number > 10) ? number : randomID.nextInt(100));
-        System.out.println("""
+        System.out.print("""
                 --- Category Option ---
                 1. Electronic\t2. Clothing \t 3. Books\t4. Others
-                Please choose using a first letter (E, C, B, O)""");
+                Please choose using a first letter (E, C, B, O): """);
         product.setProductCategory(categorySelect(userReadKey.next().toUpperCase()));
         System.out.print(">| Price: ");
         product.setProductPrice(userReadKey.nextDouble());
         System.out.print("Quantity: ");
         product.setProductQuantity(userReadKey.nextInt());
-        System.out.println(product.toString());
+        saveProductDetails.addProduct(product);
     }
 
     public static Category categorySelect(String firstLetter) {
