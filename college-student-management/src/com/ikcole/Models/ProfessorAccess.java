@@ -27,7 +27,7 @@ public class ProfessorAccess {
         student.setPassword(student.setRandomPassword(sc.nextInt()));
         student.setEmailAddress(student.generateEmail());
         System.out.println(student.toString());
-        studentList.add(student);
+        studentList.add(new Student(student.getId(), student.getFirstName(), student.getLastName(), student.getEmailAddress(), student.getPassword()));
     }
 
     public void viewAllStudent() {
