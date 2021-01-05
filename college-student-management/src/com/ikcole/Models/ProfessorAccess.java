@@ -31,26 +31,19 @@ public class ProfessorAccess {
     }
 
     public void viewAllStudent() {
-        System.out.println("----------------------------------------------------------------------------");
-        System.out.printf("%-12s %-20s %-20s %-20s", "STUDENT ID", "NAME", "EMAIL ID", "PASSWORD");
-        System.out.println("");
-        System.out.println("----------------------------------------------------------------------------");
+        displayHeader();
         for(Student student : studentList) {
-            System.out.format("%-12s %-20s %-20s %-20s\n",
+            System.out.format("%-12s %-15s %-20s %-20s\n",
                     student.getId(), (student.getFirstName() + " " + student.getLastName()), student.getEmailAddress(), student.getPassword());
         }
     }
 
-    public void viewById() {
-        int findId = Integer.parseInt(readData("Enter Student ID to View Information: "));
+    public void viewById(int findById) {
         for(Student studentByID : studentList) {
-            if(findId == studentByID.getId()) {
-                System.out.println("----------------- Student Info for ID " + findId + "--------------------");
-                System.out.println("----------------------------------------------------------------------------");
-                System.out.printf("%8s %-20s %-20s %-20s", "STUDENT ID", "NAME", "EMAIL ID", "PASSWORD");
-                System.out.println("");
-                System.out.println("----------------------------------------------------------------------------");
-                System.out.format("%8s %-20s %-20s %-20s", student.getId(),
+            if(findById == studentByID.getId()) {
+                System.out.println("\n------->>>>>>>>>> STUDENT INFO FOR ID: " + findById + " <<<<<<<<<<--------");
+                displayHeader();
+                System.out.format("%-12s %-15s %-20s %-20s\n", student.getId(),
                         (student.getFirstName() + " " + student.getLastName()), student.getEmailAddress(), student.getPassword());
             }
         }
@@ -64,6 +57,13 @@ public class ProfessorAccess {
     public String readData(String read) {
         System.out.print(read);
         return sc.next();
+    }
+
+    public void displayHeader() {
+        System.out.println("----------------------------------------------------------------------------");
+        System.out.printf("%-12s %-15s %-20s %-20s", "STUDENT ID", "NAME", "EMAIL ID", "PASSWORD");
+        System.out.println("");
+        System.out.println("----------------------------------------------------------------------------");
     }
 
 }
