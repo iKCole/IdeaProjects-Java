@@ -34,9 +34,9 @@ public class User {
      * @param firstName the user's first name
      * @param lastName  the user's last name
      * @param password  the user's account password
-     * @param theBank   the Bank object that the user is a member of
+     * @param bank   the Bank object that the user is a member of
      */
-    public User(String firstName, String lastName, String password, Bank theBank) {
+    public User(String firstName, String lastName, String password, Bank bank) {
         this.firstName = firstName;
         this.lastName = lastName;
 
@@ -51,11 +51,37 @@ public class User {
         }
 
         // get a new, unique ID for the user
-        this.UID = theBank.getNewUserUID();
+        this.UID = bank.getNewUserUID();
 
         // Create account lists (empty)
         this.accounts = new ArrayList<>();
 
         System.out.printf("\nNew user: %s, %s with ID %s created. \n", lastName, firstName, this.UID);
+    }
+
+    public String getUID() {
+        return this.UID;
+    }
+
+    public void addAccount(Account account) {
+        this.accounts.add(account);
+    }
+
+    /**
+     * Verify whether a given password matches the User password
+     * @param passwrd   the password to check
+     * @return          whether the password is valid or not
+     */
+    public boolean validatePassword(String passwrd) {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("MDS");
+            return MessageDigest.isEqual(messageDigest.digest(passwrd.getBytes()), this.passwordHash);
+        } catch (NoSuchAlgorithmException e) {
+            System.err.println("Error: Invalidate Password");
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        return false;
     }
 }

@@ -29,7 +29,19 @@ public class Account {
      */
     private ArrayList<Transaction> transactions;
 
-    public Account(String name, User holder, Bank theBank) {
+    public Account(String name, User holder, Bank bank) {
+        this.name = name;
+        this.holder = holder;
 
+        // get new acc UID;
+        this.UID = bank.getNewAccountUID();
+
+        // initialize transactions
+        this.transactions = new ArrayList<Transaction>();
+
+    }
+
+    public String getUID() {
+        return this.UID;
     }
 }
