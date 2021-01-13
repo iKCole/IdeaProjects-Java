@@ -44,4 +44,8 @@ public class Account {
     public String getUID() {
         return this.UID;
     }
+
+    public String getSummaryLine() {
+
+    }
 }

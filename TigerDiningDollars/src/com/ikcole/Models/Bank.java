@@ -11,6 +11,16 @@ public class Bank {
 
     private ArrayList<Account> accounts;
 
+    /**
+     * Create a new Bank object with blank list of users and accounts
+     * @param name  the name of the Bank
+     */
+    public Bank(String name) {
+        this.name = name;
+        this.users = new ArrayList<User>();
+        this.accounts = new ArrayList<Account>();
+    }
+
     public String getNewUserUID() {
         String uid = "";
         int length = 6;
@@ -77,5 +87,9 @@ public class Bank {
         }
 
         return null;
+    }
+
+    public String getName() {
+        return this.name;
     }
  }

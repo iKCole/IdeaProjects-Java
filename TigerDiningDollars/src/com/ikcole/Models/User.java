@@ -42,7 +42,7 @@ public class User {
 
         // Store the password's hash for security reason
         try {
-            MessageDigest messageDigest = MessageDigest.getInstance("MDS");
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             this.passwordHash = messageDigest.digest(password.getBytes());
         } catch (NoSuchAlgorithmException e) {
             System.err.println("ERROR: ");
@@ -56,7 +56,7 @@ public class User {
         // Create account lists (empty)
         this.accounts = new ArrayList<>();
 
-        System.out.printf("\nNew user: %s, %s with ID %s created. \n", lastName, firstName, this.UID);
+        System.out.printf("<User.java> New user: %s, %s with ID %s created. \n", lastName, firstName, this.UID);
     }
 
     public String getUID() {
@@ -74,7 +74,7 @@ public class User {
      */
     public boolean validatePassword(String passwrd) {
         try {
-            MessageDigest messageDigest = MessageDigest.getInstance("MDS");
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             return MessageDigest.isEqual(messageDigest.digest(passwrd.getBytes()), this.passwordHash);
         } catch (NoSuchAlgorithmException e) {
             System.err.println("Error: Invalidate Password");
@@ -83,5 +83,21 @@ public class User {
         }
 
         return false;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public void printAccountsSummary() {
+        System.out.printf("\n%s's accounts summary", this.firstName);
+        for (int acc = 0; acc < this.accounts.size(); acc++) {
+            System.out.printf("%d) %s\n", this.accounts.get(acc).getSummaryLine());
+        }
+        System.out.println();
     }
 }
