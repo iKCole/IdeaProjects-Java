@@ -63,7 +63,7 @@ public class Transaction {
         if (this.amount >= 0) {
             return String.format("%s : $%.02f : %s", this.dateTime.toString(), this.amount, this.description);
         } else {
-            return String.format("%s : $(%.02f) : %s", this.dateTime.toString(), this.amount, this.description);
+            return String.format("%s : $(%.02f) : %s", this.dateTime.toString(), -this.amount, this.description);
         }
     }
 }

@@ -56,7 +56,7 @@ public class Main {
 
         int choice;
         do {
-            System.out.printf("Welcome %s, what would you like to do?", user.getFirstName());
+            System.out.printf("Welcome %s, what would you like to do?\n", user.getFirstName());
             System.out.println(" 1. Show account transaction history");
             System.out.println(" 2. Withdrawal");
             System.out.println(" 3. Deposit");
@@ -84,11 +84,12 @@ public class Main {
             case 4:
                 Main.transferFunds(user, scan);
                 break;
-            default:
+            case 5:
+                scan.nextLine();
                 break;
         }
 
-        if (choice != 5) {
+        if (choice != 5) { // redisplay menu
             Main.printUserMenu(user, scan);
         }
     }
@@ -119,7 +120,7 @@ public class Main {
         String memo;
 
         do {
-            System.out.printf("Enter the number (1-%d) of the account\n to transfer from: ");
+            System.out.printf("Enter the number (1-%d) of the account\n to withdraw from: ", theUser.numAccounts());
             fromAcct = scan.nextInt() - 1;
             if (fromAcct < 0 || fromAcct >= theUser.numAccounts()) {
                 System.out.println("Invalid account, Cannot transfer");
@@ -128,7 +129,7 @@ public class Main {
         acctBal = theUser.getAcctBalance(fromAcct);
 
         do {
-            System.out.printf("Enter the amount to transfer (max $%.02f): $", acctBal);
+            System.out.printf("Enter the amount to withdraw (max $%.02f): $", acctBal);
             amount = scan.nextDouble();
             if (amount < 0 ) {
                 System.out.println("Amount must be greater than zero");
@@ -156,7 +157,7 @@ public class Main {
         double amount, acctBal;
 
         do {
-            System.out.printf("Enter the number (1-%d) of the account\n to transfer from: ");
+            System.out.printf("Enter the number (1-%d) of the account\n to transfer from: ", theUser.numAccounts());
             fromAcct = scan.nextInt() - 1;
             if (fromAcct < 0 || fromAcct >= theUser.numAccounts()) {
                 System.out.println("Invalid account, Cannot transfer");
@@ -166,7 +167,7 @@ public class Main {
 
         // get the account to transfer to
         do {
-            System.out.printf("Enter the number (1-%d) of the account\nto transfer to: ");
+            System.out.printf("Enter the number (1-%d) of the account\nto transfer to: ", theUser.numAccounts());
             toAcct = scan.nextInt() - 1;
             if(toAcct < 0 || toAcct >= theUser.numAccounts()) {
                 System.out.println("Invalid account, cannot transfer to");
@@ -201,7 +202,7 @@ public class Main {
         String memo;
 
         do {
-            System.out.printf("Enter the number (1-%d) of the account\n to transfer from: ");
+            System.out.printf("Enter the number (1-%d) of the account\n to deposit in: ", theUser.numAccounts());
             toAcct = scan.nextInt() - 1;
             if (toAcct < 0 || toAcct >= theUser.numAccounts()) {
                 System.out.println("Invalid account, Cannot transfer");
@@ -210,14 +211,12 @@ public class Main {
         acctBal = theUser.getAcctBalance(toAcct);
 
         do {
-            System.out.printf("Enter the amount to transfer (max $%.02f): $", acctBal);
+            System.out.printf("Enter the amount to deposit (max $%.02f): $", acctBal);
             amount = scan.nextDouble();
             if (amount < 0 ) {
                 System.out.println("Amount must be greater than zero");
-            } else if (amount > acctBal) {
-                System.out.printf("Amount must not be greater than balance of $%.02f\n.", acctBal);
             }
-        } while (amount < 0 || amount > acctBal);
+        } while (amount < 0);
 
         // gabble up rest of previous input
         scan.nextLine();
