@@ -112,4 +112,21 @@ public class User {
     public  void printActTransHistory(int acctIdx) {
         this.accounts.get(acctIdx).printTransHistory();
     }
+
+    public double getAcctBalance(int acctIdx) {
+        return this.accounts.get(acctIdx).getBalance();
+    }
+
+    /**
+     * Get the UID of a particular account
+     * @param acctIdx   the index of the account to use
+     * @return          the UID of the account
+     */
+    public String getAcctUID(int acctIdx) {
+        return this.accounts.get(acctIdx).getUID();
+    }
+
+    public void addAcctTransaction(int acctIdx, double amount, String description) {
+        this.accounts.get(acctIdx).addTransaction(amount, description);
+    }
 }

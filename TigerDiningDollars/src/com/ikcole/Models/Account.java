@@ -79,4 +79,9 @@ public class Account {
 
         System.out.println();
     }
+
+    public void addTransaction(double amount, String description) {
+        Transaction newTrans = new Transaction(amount, description, this);
+        this.transactions.add(newTrans);
+    }
 }
