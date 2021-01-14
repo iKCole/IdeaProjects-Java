@@ -43,8 +43,27 @@ public class Transaction {
      * @param accountIn     in which amount was transacted
      */
     public Transaction(double amount, String description, Account accountIn) {
-        this(amount, accountIn);
+        this(amount, accountIn); // call the two-args constructor first
         this.description = description;
     }
 
+    /**
+     * Get the amount of the transaction
+     * @return the amount
+     */
+    public double getAmount() {
+        return this.amount;
+    }
+
+    /**
+     * Get a string summarizing the transaction
+     * @return the summary string
+     */
+    public String getSummaryLine() {
+        if (this.amount >= 0) {
+            return String.format("%s : $%.02f : %s", this.dateTime.toString(), this.amount, this.description);
+        } else {
+            return String.format("%s : $(%.02f) : %s", this.dateTime.toString(), this.amount, this.description);
+        }
+    }
 }

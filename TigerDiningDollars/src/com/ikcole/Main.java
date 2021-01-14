@@ -92,4 +92,19 @@ public class Main {
             Main.printUserMenu(user, scan);
         }
     }
+
+    public static void showTransHistory(User theUser, Scanner scan) {
+        int theAcc;
+        // get account whose transaction history to look at
+        do {
+            System.out.printf("Enter the number (1-%d) of the account\n whose transactions you wanna see: ", theUser.numAccounts());
+            theAcc = scan.nextInt() - 1;
+            if (theAcc < 0 || theAcc >= theUser.numAccounts()) {
+                System.out.println("Error: Invalid account. Please try again");
+            }
+        } while (theAcc < 0 || theAcc >= theUser.numAccounts());
+
+        // print the transaction history
+        theUser.printActTransHistory(theAcc);
+    }
 }

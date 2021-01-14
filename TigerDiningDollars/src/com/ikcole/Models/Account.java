@@ -46,6 +46,37 @@ public class Account {
     }
 
     public String getSummaryLine() {
+        double balance = this.getBalance();
 
+        if (this.balance >= 0) {
+            return String.format("%s : $%.02f : %s", this.UID, balance, this.name);
+        }
+        else {
+            return String.format("%s : $(%.02f) : %s", this.UID, balance, this.name);
+        }
+    }
+
+    /**
+     * Get the balance of this account by adding the amount of the transactions
+     * @return the balance value
+     */
+    public double getBalance() {
+        double balance = 0;
+        for (Transaction t : this.transactions) {
+            balance += t.getAmount();
+        }
+        return balance;
+    }
+
+    /**
+     * Print the transaction history of the account
+     */
+    public void printTransHistory() {
+        System.out.printf("\nTransaction history for account %s\n", this.UID);
+        for (int t = this.transactions.size()-1; t >= 0 ; t--) {
+            System.out.printf(this.transactions.get(t).getSummaryLine());
+        }
+
+        System.out.println();
     }
 }
