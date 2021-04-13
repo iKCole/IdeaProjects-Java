@@ -3,6 +3,7 @@ package com.ikcole;
 import Models.Category;
 import Models.Products;
 import Utility.addProducts;
+import org.w3c.dom.ls.LSOutput;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,6 +25,7 @@ public class Main {
 	// write your code here
         try {
             addProducts();
+            System.out.println(product);
         } catch (IOException e) {
             e.printStackTrace();
         }
